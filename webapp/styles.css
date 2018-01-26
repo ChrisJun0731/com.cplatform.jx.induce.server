@@ -1,0 +1,74 @@
+@CHARSET "GB18030";
+
+body {
+	font-family: serif, monospace;
+	font-size: 9pt;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+input {
+	font-family: serif, monospace;
+	font-size: 9pt;
+}
+h1 {
+	font-size: 24px;
+	margin: 5px;
+}
+
+h2 {
+	font-size: 19px;
+	margin: 5px;
+}
+
+h3 {
+	font-size: 14px;
+	margin: 1px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+thead {
+	font-weight: bold;
+	background-color: #EEEEFF;
+}
+
+tfoot {
+	font-weight: bold;
+	background-color: #EEEEFF;
+}
+
+td {
+	padding-left: 5pt;
+	padding-right: 5pt;
+	vertical-align: top;
+}
+
+.grid td {
+	border: solid;
+	border-color: #DDDDDD;
+	border-width: 1px;
+}
+
+textarea {
+	font-family: serif, monospace;
+	font-size: 9pt;
+	height: 100%;
+	width: 100%;
+	border: none;
+}
+
+.hover:HOVER {
+	background: #FFDDDD;
+}
+
+.source_content {
+	overflow: auto;
+	max-width: 900px;
+	max-height: 400px;
+}
+
+.number {
+	text-align: right;
+}

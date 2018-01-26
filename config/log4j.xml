@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c %t %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="INFO" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/info" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c %t %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="socketAppender" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/socketlog" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c %t %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="socketPoolAppender" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/connpoollog" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c %t %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="ERROR" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/error" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c %t %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender>
+	
+	<appender name="RequestLogAppender" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/request" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c{2} %t %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="PushLogAppender" class="com.cplatform.log.DatedFileAppender">
+		<param name="File" value="log/%yyyy%mm/%dd/push" />
+		<param name="Append" value="true" />
+		<param name="BufferedIO" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %p %c{2} %t %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.google.code.yanf4j.core" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="org.apache" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="org.apache.http.wire" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="org.eclipse.jetty" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="org.hibernate" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="com.mchange.v2" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="net.rubyeye.xmemcached" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+   <logger name="com.cplatform.jx.induce.server.protocol.net.SocketClient" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="socketAppender" />
+	</logger>
+	
+	<logger name="com.cplatform.jx.induce.server.service.PushPlayListTaskService" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="PushLogAppender" />
+	</logger>
+	<logger name="com.cplatform.jx.induce.server.protocol.net.SocketConnectionPool" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="socketPoolAppender" />
+	</logger>
+	
+	<logger name="com.cplatform.log.RequestLog" additivity="true">
+		<level value="TRACE" />
+		<appender-ref ref="RequestLogAppender" />
+	</logger>
+	
+	<root>
+		<priority value="TRACE" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="ERROR" />
+	</root>
+
+</log4j:configuration> 
